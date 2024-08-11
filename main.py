@@ -1,10 +1,7 @@
 import logging
-from telegram.constants import ParseMode
-from telegram import Update, ForceReply, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext, CallbackQueryHandler
-from asyncio import Queue
+from telegram import Update, ForceReply, InlineKeyboardMarkup, InlineKeyboardButton, ParseMode, ReplyKeyboardMarkup, KeyboardButton
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
 
-my_queue = Queue()
 logger = logging.getLogger(__name__)
 
 screaming = False
@@ -101,7 +98,7 @@ def button_tap(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
-    updater = Updater("7475055123:AAFvEZy_GwlWnlKsEeXbRpNqe5oi5r5Yc7I", update_queue = my_queue)
+    updater = Updater("7475055123:AAFvEZy_GwlWnlKsEeXbRpNqe5oi5r5Yc7I")
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
@@ -111,7 +108,7 @@ def main() -> None:
 
     dispatcher.add_handler(CallbackQueryHandler(button_tap))
 
-    dispatcher.add_handler(MessageHandler(~filters.command, echo))
+    dispatcher.add_handler(MessageHandler(~Filters.command, echo))
 
     updater.start_polling()
 
