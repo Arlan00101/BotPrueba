@@ -2,9 +2,9 @@ import logging
 from telegram.constants import ParseMode
 from telegram import Update, ForceReply, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext, CallbackQueryHandler
-from asyncio import queue
+from asyncio import Queue
 
-my_queue = queue.Queue()
+my_queue = Queue()
 logger = logging.getLogger(__name__)
 
 screaming = False
