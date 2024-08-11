@@ -2,7 +2,9 @@ import logging
 from telegram.constants import ParseMode
 from telegram import Update, ForceReply, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext, CallbackQueryHandler
+from asyncio import queue
 
+my_queue = queue.Queue()
 logger = logging.getLogger(__name__)
 
 screaming = False
@@ -99,7 +101,7 @@ def button_tap(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
-    updater = Updater("7475055123:AAFvEZy_GwlWnlKsEeXbRpNqe5oi5r5Yc7I")
+    updater = Updater("7475055123:AAFvEZy_GwlWnlKsEeXbRpNqe5oi5r5Yc7I", update_queue = my_queue)
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
