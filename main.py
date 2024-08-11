@@ -1,7 +1,7 @@
 import logging
 from telegram.constants import ParseMode
 from telegram import Update, ForceReply, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext, CallbackQueryHandler
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +109,7 @@ def main() -> None:
 
     dispatcher.add_handler(CallbackQueryHandler(button_tap))
 
-    dispatcher.add_handler(MessageHandler(~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(~filters.command, echo))
 
     updater.start_polling()
 
